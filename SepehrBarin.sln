@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SepehrBarin.Domain", "Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj", "{551C4520-FEC5-40E1-8BD2-A776321CA6F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiwapardaz.SepehrBarin.Domain", "Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj", "{551C4520-FEC5-40E1-8BD2-A776321CA6F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SepehrBarin.Infrastructure", "Hiwapardaz.SepehrBarin.Infrastructure\Hiwapardaz.SepehrBarin.Infrastructure.csproj", "{FDFCEA16-2175-45C6-8BCB-50A12ADA24DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiwapardaz.SepehrBarin.Infrastructure", "Hiwapardaz.SepehrBarin.Infrastructure\Hiwapardaz.SepehrBarin.Infrastructure.csproj", "{FDFCEA16-2175-45C6-8BCB-50A12ADA24DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SeprhrBarin.Application", "Hiwapardaz.SeprhrBarin.Application\Hiwapardaz.SeprhrBarin.Application.csproj", "{27DD0C24-9710-4C8C-B770-158FF27C55CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiwapardaz.SeprhrBarin.Application", "Hiwapardaz.SeprhrBarin.Application\Hiwapardaz.SeprhrBarin.Application.csproj", "{27DD0C24-9710-4C8C-B770-158FF27C55CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SeprhrBarin.Persistence", "Hiwapardaz.SeprhrBarin.Persistence\Hiwapardaz.SeprhrBarin.Persistence.csproj", "{05CF3B35-CCA1-4306-B78B-F80140D3466C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiwapardaz.SeprhrBarin.Persistence", "Hiwapardaz.SeprhrBarin.Persistence\Hiwapardaz.SeprhrBarin.Persistence.csproj", "{05CF3B35-CCA1-4306-B78B-F80140D3466C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SepehrBarin.Api", "Hiwapardaz.SepehrBarin.Api\Hiwapardaz.SepehrBarin.Api.csproj", "{F3BEAFD4-C6FE-4FBB-8065-543BA78512A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hiwapardaz.SepehrBarin.Api", "Hiwapardaz.SepehrBarin.Api\Hiwapardaz.SepehrBarin.Api.csproj", "{F3BEAFD4-C6FE-4FBB-8065-543BA78512A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hiwapardaz.SepehrBarin.Common", "Hiwapardaz.SepehrBarin.Common\Hiwapardaz.SepehrBarin.Common.csproj", "{140D4B21-1303-41F5-92BD-A279A005107A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F3BEAFD4-C6FE-4FBB-8065-543BA78512A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BEAFD4-C6FE-4FBB-8065-543BA78512A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BEAFD4-C6FE-4FBB-8065-543BA78512A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140D4B21-1303-41F5-92BD-A279A005107A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140D4B21-1303-41F5-92BD-A279A005107A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140D4B21-1303-41F5-92BD-A279A005107A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140D4B21-1303-41F5-92BD-A279A005107A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

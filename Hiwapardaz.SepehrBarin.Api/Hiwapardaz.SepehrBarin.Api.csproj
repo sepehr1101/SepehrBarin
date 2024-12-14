@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
@@ -12,11 +12,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ContainerPort Include="8081" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\V1\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Common\Hiwapardaz.SepehrBarin.Common.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Infrastructure\Hiwapardaz.SepehrBarin.Infrastructure.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SeprhrBarin.Application\Hiwapardaz.SeprhrBarin.Application.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SeprhrBarin.Persistence\Hiwapardaz.SeprhrBarin.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

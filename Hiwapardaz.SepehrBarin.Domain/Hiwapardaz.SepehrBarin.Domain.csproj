@@ -1,9 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DeviceDetector.NET" Version="6.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Auth\EfConfig\" />
+    <Folder Include="Features\Logging\Dto\Commands\" />
+    <Folder Include="Features\Logging\Dto\Queries\" />
+    <Folder Include="Features\Logging\EfConfig\" />
+    <Folder Include="Features\Policy\Dto\Commands\" />
+    <Folder Include="Features\Policy\Dto\Queries\" />
+    <Folder Include="Features\Policy\EfConfig\" />
+    <Folder Include="Features\UiElement\Dto\Commands\" />
+    <Folder Include="Features\UiElement\Dto\Queries\" />
+    <Folder Include="Features\UiElement\EfConfig\" />
+  </ItemGroup>
 
 </Project>

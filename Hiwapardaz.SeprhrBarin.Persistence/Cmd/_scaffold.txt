@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold "Data Source=.;Encrypt=False;Database=SepehrBarinDb;Integrated Security=false;User ID=admin;Password=pspihp;" Microsoft.EntityFrameworkCore.SqlServer  --project Hiwapardaz.SepehrBarin.Persistence --output-dir Scaffold
