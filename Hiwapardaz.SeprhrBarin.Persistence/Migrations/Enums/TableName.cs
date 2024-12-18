@@ -9,5 +9,14 @@
         UserToken,
         Role,
         UserRole,
+        News,
+        Media,
+        Request,
+        Level,
+        RequestLevel,
+        Product,
+        ServiceType,
+        BodyPart,
+        RequestBodyPart
     }
 }
