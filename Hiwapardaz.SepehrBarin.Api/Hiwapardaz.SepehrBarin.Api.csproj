@@ -29,8 +29,8 @@
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Common\Hiwapardaz.SepehrBarin.Common.csproj" />
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj" />
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Infrastructure\Hiwapardaz.SepehrBarin.Infrastructure.csproj" />
-    <ProjectReference Include="..\Hiwapardaz.SeprhrBarin.Application\Hiwapardaz.SeprhrBarin.Application.csproj" />
-    <ProjectReference Include="..\Hiwapardaz.SeprhrBarin.Persistence\Hiwapardaz.SeprhrBarin.Persistence.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Application\Hiwapardaz.SepehrBarin.Application.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Persistence\Hiwapardaz.SepehrBarin.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
