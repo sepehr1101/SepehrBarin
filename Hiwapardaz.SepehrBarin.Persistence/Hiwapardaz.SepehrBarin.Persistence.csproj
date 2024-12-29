@@ -7,15 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\**" />
-    <EmbeddedResource Remove="Features\**" />
-    <None Remove="Features\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="DNTPersianUtils.Core" Version="6.3.2" />
     <PackageReference Include="FluentMigrator" Version="6.2.0" />
     <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="6.2.0" />
+    <PackageReference Include="Microsoft.Entityframeworkcore.Design" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="9.0.0" />
@@ -24,6 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Logging\" />
+    <Folder Include="Features\Chat\" />
+    <Folder Include="Features\BasicAppInfo\" />
+    <Folder Include="Features\Media\" />
+    <Folder Include="Features\Payment\" />
+    <Folder Include="Features\Workflow\" />
+    <Folder Include="Features\News\" />
     <Folder Include="Scaffold\" />
   </ItemGroup>
 

@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\V1\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Common\Hiwapardaz.SepehrBarin.Common.csproj" />
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj" />
     <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Infrastructure\Hiwapardaz.SepehrBarin.Infrastructure.csproj" />

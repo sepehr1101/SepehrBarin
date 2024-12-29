@@ -34,43 +34,23 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
         {
             var table = TableName.User;
             Create.Table(nameof(TableName.User))
-                .WithColumn(Id).AsGuid().PrimaryKey(NamingHelper.Pk(table))               
-                .WithColumn("FullName").AsString(_255).NotNullable()
-                .WithColumn("DisplayName").AsString(_255).NotNullable()
-                .WithColumn("Username").AsString(_255).Unique(NamingHelper.Uq(table,"Username")).NotNullable()
-                .WithColumn("Password").AsString(int.MaxValue).NotNullable()
+                .WithColumn(Id).AsGuid().PrimaryKey(NamingHelper.Pk(table))
                 .WithColumn("Mobile").AsAnsiString(11).NotNullable()
-                .WithColumn("MobileConfirmed").AsBoolean().NotNullable()    
-                .WithColumn("HasTwoStepVerification").AsBoolean().NotNullable()
                 .WithColumn("InvalidLoginAttemptCount").AsInt32().NotNullable().WithDefaultValue(0)
-                .WithColumn("SerialNumber").AsAnsiString(36).Nullable()
                 .WithColumn("LatestLoginDateTime").AsDateTime().Nullable()
                 .WithColumn("LockTimespan").AsDateTime().Nullable()
-                .WithColumn("PreviousId").AsGuid().Nullable()
-                     .ForeignKey(NamingHelper.Fk(table, table, "PreviousId"), nameof(TableName.User), Id)
                 .WithColumn("ValidFrom").AsDateTime2().NotNullable()
                 .WithColumn("ValidTo").AsDateTime2().Nullable()
                 .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
-                .WithColumn(Hash).AsString(int.MaxValue).NotNullable();
+                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable();
         }
         private void CreateRole()
         {
             var table = TableName.Role;
             Create.Table(nameof(TableName.Role))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Name").AsAnsiString(_255).NotNullable() 
-                .WithColumn("Title").AsString(_255).NotNullable()
-                .WithColumn("DefaultClaims").AsString(int.MaxValue).Nullable()
-                .WithColumn("SensitiveInfo").AsBoolean().NotNullable()
-                .WithColumn("IsRemovable").AsBoolean().NotNullable()
-                .WithColumn("PreviousId").AsInt32().Nullable()
-                    .ForeignKey(NamingHelper.Fk(table, table, "PreviousId"), nameof(TableName.Role), Id)
-                .WithColumn("ValidFrom").AsDateTime2().NotNullable()
-                .WithColumn("ValidTo").AsDateTime2().Nullable()
-                .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
-                .WithColumn(Hash).AsString(int.MaxValue).NotNullable();
+                .WithColumn("Name").AsAnsiString(_255).NotNullable()
+                .WithColumn("Title").AsString(_255).NotNullable();
         }
         private void CreateUserRole()
         {
@@ -81,13 +61,10 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                     .ForeignKey(NamingHelper.Fk(TableName.User, table), nameof(TableName.User), Id)
                 .WithColumn($"{nameof(TableName.Role)}{Id}").AsInt32().NotNullable()
                     .ForeignKey(NamingHelper.Fk(TableName.Role, TableName.UserRole), nameof(TableName.Role), Id)
-                .WithColumn("InsertGroupId").AsGuid().NotNullable()
-                .WithColumn("RemoveGroupId").AsGuid().NotNullable()
                 .WithColumn("ValidFrom").AsDateTime2().NotNullable()
                 .WithColumn("ValidTo").AsDateTime2().Nullable()
                 .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
-                .WithColumn(Hash).AsString(int.MaxValue).NotNullable();
+                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable();
         }
         private void CreateUserToken()
         {
@@ -122,46 +99,40 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
             var table = TableName.UserLogin;
             Create.Table(nameof(TableName.UserLogin))
                 .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Username").AsString(_255).NotNullable()
+                .WithColumn("Mobile").AsString(11).NotNullable()
                 .WithColumn($"{nameof(TableName.User)}{Id}").AsGuid().Nullable()
                     .ForeignKey(NamingHelper.Fk(TableName.User, table), nameof(TableName.User), Id)
-                .WithColumn("FirstStepDateTime").AsDateTime().NotNullable()
-                .WithColumn("Ip").AsAnsiString(15).NotNullable()
-                .WithColumn("FirstStepSuccess").AsBoolean().NotNullable()
+                .WithColumn("LoginDateTime").AsDateTime().NotNullable()
                 .WithColumn($"{nameof(TableName.InvalidLoginReason)}{Id}").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.InvalidLoginReason, table), nameof(TableName.InvalidLoginReason), Id)
-                .WithColumn("WrongPassword").AsString(_1023).Nullable()
+                .WithColumn("WrongCode").AsString(_1023).Nullable()
                 .WithColumn("AppVersion").AsString(15).NotNullable()
-                .WithColumn("TwoStepCode").AsAnsiString(15).Nullable()
-                .WithColumn("TwoStepExpireDateTime").AsDateTime().Nullable()
-                .WithColumn("TwoStepInsertDateTime").AsDateTime().Nullable()
-                .WithColumn("TwoStepWasSuccessful").AsBoolean().Nullable()
-                .WithColumn("PreviousFailureIsShown").AsBoolean().NotNullable()
                 .WithColumn("LogoutDateTime").AsDateTime().Nullable()
-                .WithColumn($"{nameof(TableName.LogoutReason)}{Id}").AsInt16()
+                .WithColumn($"{nameof(TableName.LogoutReason)}{Id}").AsInt16().Nullable()
                     .ForeignKey(NamingHelper.Fk(TableName.LogoutReason, table), nameof(TableName.LogoutReason), Id)
                 .WithColumn("LogInfo").AsAnsiString(int.MaxValue).NotNullable();
         }
-        private void CreateNews() { 
+        private void CreateNews() {
             var table = TableName.News;
             Create.Table(nameof(TableName.News))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Title").AsString().NotNullable()
-                .WithColumn("Summary").AsString().NotNullable()
-                .WithColumn("ImageUrl").AsString()
-                .WithColumn("Text").AsString().NotNullable()
-                .WithColumn("Auther").AsGuid()
+                .WithColumn("Title").AsString(_255).NotNullable()
+                .WithColumn("Summary").AsString(_1023).NotNullable()
+                .WithColumn("ImageUrl").AsString(_1023)
+                .WithColumn("Text").AsString(int.MaxValue).NotNullable()
+                .WithColumn("AutherId").AsGuid()
                     .ForeignKey(NamingHelper.Fk(TableName.User, table), nameof(TableName.User), Id)
                 .WithColumn("DateTime").AsDateTime();
         }
+        //todo: file repository
         private void CreateMedia() { 
-        var table = TableName.Media;
+            var table = TableName.Media;
             Create.Table(nameof(TableName.Media))
                 .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(table)).Identity()
                 .WithColumn("Address").AsString();
         }
         private void CreateProduct() {
-        var table = TableName.Product;
+            var table = TableName.Product;
             Create.Table(nameof(TableName.Product))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
                 .WithColumn("Title").AsString().NotNullable()
@@ -190,6 +161,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("HasProduct").AsBoolean()
                 .WithColumn("Image").AsString();
         }
+
+        //todo: skip for nowd
         private void CreateLevel()
         {
             var table = TableName.Level;
