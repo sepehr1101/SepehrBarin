@@ -206,7 +206,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("LivingAddress").AsString(_255).Nullable()
                 .WithColumn("LivingPostalCode").AsString(_255).Nullable()
                 .WithColumn("Mobile").AsString(11).NotNullable()
-                .WithColumn("Description").AsString().Nullable()
+                .WithColumn("Description").AsString().Nullable()                
                 .WithColumn("Picture").AsString().NotNullable()
                 .WithColumn("Surgry").AsBoolean()
                 .WithColumn("UnchangedPicture").AsString().NotNullable()

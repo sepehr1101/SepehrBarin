@@ -362,4 +362,10 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Hiwapardaz.SepehrBarin.Api/appsettings.json
+<<<<<<< HEAD
 /Hiwapardaz.SepehrBarin.Persistence/Scaffold
+=======
+/Hiwapardaz.SepehrBarin.Api/appsettings.json
+>>>>>>> fa6172dcdba3f11f106a375282ede7b31f197389
+/Hiwapardaz.SepehrBarin.Api/appsettings.json
+/Hiwapardaz.SepehrBarin.Api/appsettings.json
