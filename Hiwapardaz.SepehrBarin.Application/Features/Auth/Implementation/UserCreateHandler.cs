@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hiwapardaz.SepehrBarin.Application.Features.Auth.Contracts;
+using Hiwapardaz.SepehrBarin.Common.Categories.UseragentLog;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Commands;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
@@ -34,17 +35,20 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
         }
         public async Task<User> Handle(FirstStepLoginInput userCreateDto, CancellationToken cancellationToken)
         {
-            var logInfo = DeviceDetection.GetLogInfo(_contextAccessor.HttpContext.Request);
-            var logInfoString = JsonOperation.Marshal(logInfo);
-            Guid operationGroupId = Guid.NewGuid();
+            var logInfoString = LogInfoJson.Get(_contextAccessor.HttpContext.Request, true);
 
-            var userRoles = CreateUserRoles(new[] { 1 }, logInfoString, operationGroupId, operationGroupId);
-
-            var user = _mapper.Map<User>(userCreateDto);
-            user.Id = operationGroupId;
-            user.InsertLogInfo = logInfoString;
+            var userId = Guid.NewGuid();
+            var user = new User()
+            {
+                Id = userId,
+                InsertLogInfo = logInfoString,
+                InvalidLoginAttemptCount = 0,
+                Mobile = userCreateDto.Mobile,
+                ValidFrom = DateTime.Now,
+                SerialNumber = Guid.NewGuid().ToString("n"),
+                UserRoles = CreateUserRoles(userId)
+            };
             await _userCommandService.Add(user);
-            await _userRoleCommandService.Add(userRoles);
             return user;
         }
 
@@ -63,6 +67,12 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
                 ValidTo = null,
                 UserId = userId
             };
+        }
+        private ICollection<UserRole> CreateUserRoles(Guid userId)
+        {
+            var userRoles = new List<UserRole>();
+            userRoles.Add(new UserRole() { UserId = userId, RoleId = 1, ValidFrom = DateTime.Now, InsertLogInfo = LogInfoJson.Get() });
+            return userRoles;
         }
     }
 }

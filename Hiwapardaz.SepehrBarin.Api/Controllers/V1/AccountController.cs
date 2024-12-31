@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 {
-    [Route("[controller]")]
+    [Route("login")]
     [ApiController]
     public class AccountController : BaseController
     {
