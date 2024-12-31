@@ -1,4 +1,4 @@
-﻿using Aban360.Common.Extensions;
+﻿using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
 using Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts;
@@ -21,11 +21,6 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
         public async Task Add(Role role)
         {
             await _roles.AddAsync(role);
-        }
-        public void Remove(Role role, string removeLogInfo)
-        {
-            role.ValidTo = DateTime.Now;
-            role.RemoveLogInfo = removeLogInfo;
         }
     }
 }

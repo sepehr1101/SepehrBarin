@@ -5,20 +5,30 @@ namespace Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
 [Table(nameof(UserLogin))]
 public class UserLogin
 {
-    public long Id { get; set; }
-    public string Username { get; set; } = null!;
+    public Guid Id { get; set; }
+
+    public string Mobile { get; set; } = null!;
+
     public Guid? UserId { get; set; }
-    public DateTime FirstStepDateTime { get; set; }
-    public string Ip { get; set; } = null!;
-    public bool FirstStepSuccess { get; set; }
-    public string? WrongPassword { get; set; }
-    public string AppVersion { get; set; } = null!;
-    public string? TwoStepCode { get; set; }
-    public DateTime? TwoStepExpireDateTime { get; set; }
-    public DateTime? TwoStepInsertDateTime { get; set; }
-    public bool? TwoStepWasSuccessful { get; set; }
-    public bool PreviousFailureIsShown { get; set; }
+
+    public DateTime LoginDateTime { get; set; }
+
+    public short? InvalidLoginReasonId { get; set; }
+    public string? ConfirmCode { get; set; }
+    public DateTime? ConfirmExpire { get; set; }
+    public string? WrongCode { get; set; }
+
+    public string? AppVersion { get; set; }
+
     public DateTime? LogoutDateTime { get; set; }
-    public int? LogoutReasonId { get; set; }
+
+    public short? LogoutReasonId { get; set; }
+
+    public string LogInfo { get; set; } = null!;
+
+    public virtual InvalidLoginReason InvalidLoginReason { get; set; } = null!;
+
+    public virtual LogoutReason? LogoutReason { get; set; }
+
     public virtual User? User { get; set; }
 }

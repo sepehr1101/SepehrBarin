@@ -1,6 +1,9 @@
-﻿namespace Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-public class InvalidLoginReason
+namespace Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
+
+[Table(nameof(InvalidLoginReason))]
+public partial class InvalidLoginReason
 {
     public short Id { get; set; }
 

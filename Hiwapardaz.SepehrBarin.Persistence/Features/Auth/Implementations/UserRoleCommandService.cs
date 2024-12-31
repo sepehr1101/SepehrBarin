@@ -1,4 +1,4 @@
-﻿using Aban360.Common.Extensions;
+﻿using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
 using Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts;
@@ -25,14 +25,12 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
         }
 
         public void Remove(ICollection<UserRole> userRoles, string logInfo)
-        {
-            Guid operationGroupId = Guid.NewGuid();
-            userRoles.ForEach(userRole => Remove(userRole, logInfo, operationGroupId));
+        {           
+            userRoles.ForEach(userRole => Remove(userRole, logInfo));
         }
-        private void Remove(UserRole userRole, string logInfo, Guid operationGroupId)
+        private void Remove(UserRole userRole, string logInfo)
         {
             userRole.RemoveLogInfo = logInfo;
-            userRole.RemoveGroupId = operationGroupId;
             userRole.ValidTo = DateTime.Now;
         }
     }

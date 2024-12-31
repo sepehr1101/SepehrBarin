@@ -70,8 +70,11 @@ namespace Hiwapardaz.SepehrBarin.Api.Extensions
             // Only needed for custom roles.
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(BaseRoles.Admin, policy => policy.RequireRole(BaseRoles.Admin));
-                options.AddPolicy(BaseRoles.Programmer, policy => policy.RequireRole(BaseRoles.Programmer));
+                options.AddPolicy(BaseRoles.AdminLevel1, policy => policy.RequireRole(BaseRoles.AdminLevel1));
+                options.AddPolicy(BaseRoles.AdminLevel2, policy => policy.RequireRole(BaseRoles.AdminLevel2));
+                options.AddPolicy(BaseRoles.AdminLevel3, policy => policy.RequireRole(BaseRoles.AdminLevel3));
+                options.AddPolicy(BaseRoles.Ai, policy => policy.RequireRole(BaseRoles.Ai));
+                options.AddPolicy(BaseRoles.PublicUser, policy => policy.RequireRole(BaseRoles.PublicUser));
             });
 
             // Needed for jwt auth.

@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Scrutor" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Common\Hiwapardaz.SepehrBarin.Common.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Domain\Hiwapardaz.SepehrBarin.Domain.csproj" />
+    <ProjectReference Include="..\Hiwapardaz.SepehrBarin.Persistence\Hiwapardaz.SepehrBarin.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

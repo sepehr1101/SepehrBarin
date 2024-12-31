@@ -1,4 +1,4 @@
-﻿using Aban360.Common.Extensions;
+﻿using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
 using Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts;
@@ -22,10 +22,10 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
         {
             return await _uow.FindOrThrowAsync<User>(id);
         }
-        public async Task<User?> Get(string username)
+        public async Task<User?> Get(string mobile)
         {
             return await _users
-                .SingleOrDefaultAsync(u => u.Username == username);
+                .SingleOrDefaultAsync(u => u.Mobile == mobile);
         }
     }
 }
