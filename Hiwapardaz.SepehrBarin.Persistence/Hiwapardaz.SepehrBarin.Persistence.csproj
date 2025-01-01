@@ -22,13 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Logging\" />
     <Folder Include="Features\Chat\" />
     <Folder Include="Features\BasicAppInfo\" />
-    <Folder Include="Features\Media\" />
+    <Folder Include="Features\Logging\" />
     <Folder Include="Features\Payment\" />
     <Folder Include="Features\Workflow\" />
-    <Folder Include="Features\News\" />
     <Folder Include="Scaffold\" />
   </ItemGroup>
 

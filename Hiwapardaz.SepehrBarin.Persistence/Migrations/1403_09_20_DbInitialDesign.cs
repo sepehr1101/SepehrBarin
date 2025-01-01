@@ -65,7 +65,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("ValidFrom").AsDateTime2().NotNullable()
                 .WithColumn("ValidTo").AsDateTime2().Nullable()
                 .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable();
+                .WithColumn("RemoveLogInfo").AsString(int.MaxValue).Nullable();
         }
         private void CreateUserToken()
         {
@@ -121,11 +121,11 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
                 .WithColumn("Title").AsString(_255).NotNullable()
                 .WithColumn("Summary").AsString(_1023).NotNullable()
-                .WithColumn("ImageUrl").AsString(_1023)
+                .WithColumn("ImageBase64").AsString(int.MaxValue)
                 .WithColumn("Text").AsString(int.MaxValue).NotNullable()
                 .WithColumn("AutherId").AsGuid()
                     .ForeignKey(NamingHelper.Fk(TableName.User, table), nameof(TableName.User), Id)
-                .WithColumn("DateTime").AsDateTime();
+                .WithColumn("InsertDateTime").AsDateTime();
         }
         //todo: file repository
         private void CreateMedia() { 

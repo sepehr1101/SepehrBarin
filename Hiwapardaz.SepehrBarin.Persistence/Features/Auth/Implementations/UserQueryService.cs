@@ -18,9 +18,20 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
             _users = _uow.Set<User>();
             _users.NotNull(nameof(_users));
         }
+        public async Task<ICollection<User>> Get()
+        {
+            return await _users
+                .Where(u=>u.RemoveLogInfo==null)
+                .Include(u=>u.UserRoles)
+                .ThenInclude(ur=>ur.Role)
+                .ToListAsync();
+        }
         public async Task<User> Get(Guid id)
         {
-            return await _uow.FindOrThrowAsync<User>(id);
+            return await 
+                _users
+                .Include(u=>u.UserRoles)
+                .SingleAsync(u=>u.Id==id);
         }
         public async Task<User?> Get(string mobile)
         {

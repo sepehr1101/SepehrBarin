@@ -8,19 +8,24 @@
 
   <ItemGroup>
     <PackageReference Include="DeviceDetector.NET" Version="6.4.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Features\Auth\EfConfig\" />
+    <Folder Include="Features\BasicAppInfo\" />
+    <Folder Include="Features\Chat\" />
     <Folder Include="Features\Logging\Dto\Commands\" />
     <Folder Include="Features\Logging\Dto\Queries\" />
     <Folder Include="Features\Logging\EfConfig\" />
+    <Folder Include="Features\Payment\" />
     <Folder Include="Features\Policy\Dto\Commands\" />
     <Folder Include="Features\Policy\Dto\Queries\" />
     <Folder Include="Features\Policy\EfConfig\" />
     <Folder Include="Features\UiElement\Dto\Commands\" />
     <Folder Include="Features\UiElement\Dto\Queries\" />
     <Folder Include="Features\UiElement\EfConfig\" />
+    <Folder Include="Features\Workflow\" />
   </ItemGroup>
 
 </Project>

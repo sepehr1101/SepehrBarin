@@ -1,4 +1,5 @@
 ﻿using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
+using Hiwapardaz.SepehrBarin.Domain.Features.Media.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hiwapardaz.SepehrBarin.Persistence.Contexts.Implementation
@@ -17,5 +18,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Contexts.Implementation
         public virtual DbSet<UserRole> UserRoles { get; set; }
 
         public virtual DbSet<UserToken> UserTokens { get; set; }
+
+        public virtual DbSet<News> NewsList { get; set; }
     }
 }

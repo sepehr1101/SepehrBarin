@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Claims;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 {
@@ -46,6 +47,13 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         {
             var envelope = new ApiResponseEnvelope<object>((int)HttpStatusCode.BadRequest, null, null, new List<ApiError> { new ApiError(errorMessage) }, null, meta);
             return BadRequest(envelope);
+        }
+
+        [NonAction]
+        public Guid GetUserId()
+        {            
+            var userId = Request.HttpContext.User.Claims.First(c=>c.Type== ClaimTypes.UserData).Value;
+            return Guid.Parse(userId);
         }
     }
 }
