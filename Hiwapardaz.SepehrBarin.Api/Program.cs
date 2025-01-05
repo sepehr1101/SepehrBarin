@@ -1,3 +1,4 @@
+using Hiwapardaz.SepehrBarin.Api.ExceptionHandlers;
 using Hiwapardaz.SepehrBarin.Api.Extensions;
 using Hiwapardaz.SepehrBarin.Persistence.Extensions;
 
@@ -21,8 +22,14 @@ builder.Services.AddCustomCors();
 //builder.Services.AddCustomAntiforgery();
 builder.Services.AddCustomOptions(configuration);
 
+//Exceptions
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
+app.UseExceptionHandler();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{

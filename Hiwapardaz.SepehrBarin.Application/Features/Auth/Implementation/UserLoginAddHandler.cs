@@ -38,6 +38,5 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
             await _userLoginService.Add(userLogin);
             return new FirstStepOutput( userLogin.Id, 120,userLogin.ConfirmCode);
         }
-
     }
 }

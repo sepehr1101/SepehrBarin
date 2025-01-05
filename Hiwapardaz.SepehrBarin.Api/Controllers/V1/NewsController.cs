@@ -1,5 +1,7 @@
 ﻿using Hiwapardaz.SepehrBarin.Application.Features.Media.Contracts;
+using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
+using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Queries;
 using Hiwapardaz.SepehrBarin.Domain.Features.Media.Dtos;
 using Hiwapardaz.SepehrBarin.Domain.Features.Media.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
@@ -26,6 +28,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
         [HttpGet]
         [Route("summary")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<NewsSummaryDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetSummary(CancellationToken cancellationToken)
         {
             var newsSummary = await _newsOperations.ReadSummaryAll(cancellationToken);
@@ -34,6 +37,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
         [HttpGet]
         [Route("read-single/{id}")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<NewsSingleDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetSingle(int id, CancellationToken cancellationToken)
         {
             var news = await _newsOperations.Get(id, cancellationToken);
@@ -42,6 +46,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
         [HttpPost]
         [Route("create")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<NewsAddDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Add([FromForm]NewsAddDto input, CancellationToken cancellationToken)
         {
             await _newsOperations.Add(input, GetUserId(), cancellationToken);
@@ -51,6 +56,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         
         [HttpPost]
         [Route("update")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<NewsUpdateDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update([FromBody] NewsUpdateDto input, CancellationToken cancellationToken)
         {
             await _newsOperations.Update(input, cancellationToken);
@@ -60,6 +66,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
         [HttpPost]
         [Route("delete/{id}")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<int>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Remove(int id, CancellationToken cancellationToken)
         {
             await _newsOperations.Remove(id, cancellationToken);
