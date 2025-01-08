@@ -1,5 +1,6 @@
 ﻿using Hiwapardaz.SepehrBarin.Application.Features.Auth.Contracts;
 using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
+using Hiwapardaz.SepehrBarin.Domain.Constants;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Commands;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Queries;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
@@ -57,7 +58,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         {
             await _userUpdateRoleHandler.Handle(userUpdateDto, cancellationToken);
             await _uow.SaveChangesAsync();
-            return Ok(userUpdateDto,"به روز رسانی اطلاعات کاربر با موفقیت انجام شد");
+            return Ok(userUpdateDto, MessageResources.UserUpdateSuccess);
         }
     }
 }

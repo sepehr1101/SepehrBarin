@@ -57,7 +57,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         [HttpPost]
         [Route("update")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<NewsUpdateDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Update([FromBody] NewsUpdateDto input, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update([FromForm] NewsUpdateDto input, CancellationToken cancellationToken)
         {
             await _newsOperations.Update(input, cancellationToken);
             await _uow.SaveChangesAsync();

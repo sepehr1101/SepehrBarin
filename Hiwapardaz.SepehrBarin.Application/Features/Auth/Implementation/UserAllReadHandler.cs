@@ -22,7 +22,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
                 InsertLogInfo = u.InsertLogInfo,
                 LockTimespan = u.LockTimespan,
                 Mobile = u.Mobile,
-                RoleTitles = u.UserRoles.Select(ur => ur.Role.Title).ToList()
+                RoleTitles = u.UserRoles.Where(u=>u.ValidTo==null).Select(ur => ur.Role.Title).ToList()
             }).ToList();
             return userDtos;
         }

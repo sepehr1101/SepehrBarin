@@ -4,6 +4,6 @@
     {
         public Guid Id { get; init; }
         public string Mobile { get; init; } = null!;
-        public int RoleId { get; set; }
+        public ICollection<int> RoleIds { get; set; } = default!;
     }
 }
