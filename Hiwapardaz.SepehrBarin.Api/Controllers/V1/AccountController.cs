@@ -5,7 +5,6 @@ using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Commands;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Queries;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
 using Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1

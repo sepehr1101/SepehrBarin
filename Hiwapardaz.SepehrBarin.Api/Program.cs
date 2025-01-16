@@ -1,5 +1,6 @@
 using Hiwapardaz.SepehrBarin.Api.ExceptionHandlers;
 using Hiwapardaz.SepehrBarin.Api.Extensions;
+using Hiwapardaz.SepehrBarin.Infrastructure.Notification;
 using Hiwapardaz.SepehrBarin.Persistence.Extensions;
 
 
@@ -26,6 +27,10 @@ builder.Services.AddCustomOptions(configuration);
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+
+builder.Services.AddHttpClient();
+
+builder.Services.AddScoped<ISmsManager, SmsManager>();
 
 var app = builder.Build();
 

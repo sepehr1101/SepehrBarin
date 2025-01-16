@@ -3,6 +3,7 @@ using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Commands;
 using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
+using Hiwapardaz.SepehrBarin.Infrastructure.Notification;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         private readonly IUserCreateHandler _userCreateHandler;
         private readonly IUserLoginAddHandler _userLoginAddHandler;
         private readonly IUserLoginFindUserHandler _userLoginFindUserHandler;
+        private readonly ISmsManager _sms;
 
         public LoginController(
             IUnitOfWork uow,
@@ -27,7 +29,8 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
             IUserTokenCreateHandler userTokenCreateHandler,
             IUserCreateHandler userCreateHandler,
             IUserLoginAddHandler userLoginAddHandler,
-            IUserLoginFindUserHandler userLoginFindUserHandler)
+            IUserLoginFindUserHandler userLoginFindUserHandler,
+            ISmsManager sms)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -49,6 +52,9 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
             _userLoginFindUserHandler = userLoginFindUserHandler;
             _userLoginFindUserHandler.NotNull( nameof(userLoginFindUserHandler));
+
+            _sms = sms;
+            _sms.NotNull(nameof(sms));  
         }
 
         [AllowAnonymous]
@@ -70,7 +76,15 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
             }
             var output= await _userLoginAddHandler.Handle(loginDto, finalUser);
             await _uow.SaveChangesAsync(cancellationToken);
+            await SendLoginSms(finalUser.Mobile, output.TempCode);
             return Ok(output);
+        }
+
+        private async Task SendLoginSms(string mobile, string confirmCode)
+        {
+            var endOfMessage = "yyXjIuLaNE0\r\nDRGCIPswa7N";
+            string text = $"کد ورود شما به سپهر برین:{Environment.NewLine}{confirmCode}{Environment.NewLine}{endOfMessage}";
+            await _sms.Send(text, mobile);
         }
 
         [AllowAnonymous]

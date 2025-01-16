@@ -1,11 +1,8 @@
 ﻿using Hiwapardaz.SepehrBarin.Application.Features.Media.Contracts;
 using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
-using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Queries;
 using Hiwapardaz.SepehrBarin.Domain.Features.Media.Dtos;
-using Hiwapardaz.SepehrBarin.Domain.Features.Media.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Contexts.UnitOfWork;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
