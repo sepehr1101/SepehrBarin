@@ -26,7 +26,6 @@
     <Folder Include="Features\BasicAppInfo\" />
     <Folder Include="Features\Logging\" />
     <Folder Include="Features\Payment\" />
-    <Folder Include="Features\Workflow\" />
     <Folder Include="Scaffold\" />
   </ItemGroup>
 

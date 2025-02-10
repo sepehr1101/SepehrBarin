@@ -8,4 +8,9 @@
         public string InsertLogInfo { get; set; } = null!;
         public ICollection<string>? RoleTitles { get; set; }
     }
+    public record UserAdminQuery
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; } = default!;
+    }
 }

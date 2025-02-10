@@ -142,104 +142,64 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("Description").AsString().NotNullable()
                 .WithColumn("Image").AsString();     
         }
-
-        private void CreateBodyPart()
-        {
-            var table = TableName.BodyPart;
-            Create.Table(nameof(TableName.BodyPart))
-                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Title").AsString().NotNullable()
-                .WithColumn ("Description").AsString().NotNullable()               
-                .WithColumn("Order").AsInt32().NotNullable().Unique();
-        }
-
-        private void CreateServiceType()
-        {
-            var table = TableName.ServiceType;
-            Create.Table(nameof(TableName.ServiceType))
-                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Title").AsString().NotNullable()
-                .WithColumn("Description").AsString().NotNullable()
-                .WithColumn("NeedBodyPart").AsBoolean()
-                .WithColumn("HasProduct").AsBoolean()
-                .WithColumn("Image").AsString();
-        }
-
         //todo: skip for nowd
-        private void CreateLevel()
+        private void CreateState()
         {
-            var table = TableName.Level;
-            Create.Table(nameof(TableName.Level))
-                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Title").AsString().NotNullable()
-                .WithColumn("Description").AsString()
-                .WithColumn("Payable").AsBoolean()
-                .WithColumn("Chat").AsBoolean()
-                .WithColumn("Ship").AsBoolean()
-                .WithColumn("Sent").AsBoolean()
-                .WithColumn("Delivered").AsBoolean()
-                .WithColumn("Confirmed").AsBoolean()
-                .WithColumn("Waiting").AsBoolean()
-                .WithColumn("Reject").AsBoolean()
-                .WithColumn("Finished").AsBoolean()
-                .WithColumn("Order").AsInt32().NotNullable().Unique();
+            var table = TableName.State;
+            Create.Table(nameof(TableName.State))
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table))
+                .WithColumn("Title").AsString().NotNullable();               
         }
 
         private void CreateRequest()
         {
             var table = TableName.Request;
             Create.Table(nameof(TableName.Request))
-                .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn("UserId").AsGuid().NotNullable()
+                    .ForeignKey(NamingHelper.Fk(TableName.User, table), nameof(TableName.User), Id)
                 .WithColumn("Firstname").AsString(_255).NotNullable()
-                .WithColumn("Lastname").AsString(_255).NotNullable()
+                .WithColumn("Surname").AsString(_255).NotNullable()
                 .WithColumn("Nicknames").AsString(int.MaxValue).Nullable()
                 .WithColumn("FatherName").AsString(_255).NotNullable()
                 .WithColumn("MotherName").AsString(_255).NotNullable()
                 .WithColumn("FatherNicknames").AsString(int.MaxValue).Nullable()
                 .WithColumn("MotherNicknames").AsString(int.MaxValue).Nullable()
-                .WithColumn("Birthday").AsDate().NotNullable()
-                .WithColumn("EstimatedBirthday").AsDate().Nullable()
+                .WithColumn("Birthday").AsString(_31).NotNullable()
+                .WithColumn("EstimatedBirthday").AsString(_31).Nullable()
                 .WithColumn("FalseBirthday").AsBoolean()
-                .WithColumn("BirthProvince").AsString(_255).NotNullable()
                 .WithColumn("BirthCounty").AsString(_255).NotNullable()
+                .WithColumn("BirthProvince").AsString(_255).NotNullable()               
                 .WithColumn("BirthCityOrVillage").AsString(_255).NotNullable()
-                .WithColumn("LivingProvince").AsString(_255).Nullable()
                 .WithColumn("LivingCounty").AsString(_255).Nullable()
+                .WithColumn("LivingProvince").AsString(_255).Nullable()               
                 .WithColumn("LivingCityOrVillage").AsString(_255).Nullable()
                 .WithColumn("LivingAddress").AsString(_255).Nullable()
                 .WithColumn("LivingPostalCode").AsString(_255).Nullable()
                 .WithColumn("Mobile").AsString(11).NotNullable()
                 .WithColumn("Description").AsString().Nullable()                
-                .WithColumn("Picture").AsString().NotNullable()
-                .WithColumn("Surgry").AsBoolean()
-                .WithColumn("UnchangedPicture").AsString().NotNullable()
-               /* .WithColumn("BodyParts").AsString().Nullable()
-                    .ForeignKey(NamingHelper.Fk(TableName.BodyPart, table), nameof(TableName.BodyPart), Id)*/
-                .WithColumn("Product").AsInt32().Nullable()
-                    .ForeignKey(NamingHelper.Fk(TableName.Product, table), nameof(TableName.Product), Id)
-                .WithColumn("ServiceType").AsInt32().NotNullable()
-                    .ForeignKey(NamingHelper.Fk(TableName.ServiceType, table), nameof(TableName.ServiceType), Id);
+                .WithColumn("ImageBase64").AsString(int.MaxValue).NotNullable()
+                .WithColumn("Surgery").AsBoolean()
+                .WithColumn("BeforeSurgeryImageBase64").AsString(int.MaxValue).Nullable()
+                .WithColumn("ProductTitle").AsString(_255).Nullable()
+                .WithColumn("ServiceType").AsString(_255).NotNullable()
+                .WithColumn("SubServiceType").AsString(_255).Nullable()
+                .WithColumn("Amount").AsInt32().Nullable()
+                .WithColumn("ImageClaimPaymentBase64").AsString(int.MaxValue).Nullable();
         }
 
-        private void CreateRequestLevel() { 
-            var table = TableName.RequestLevel;
-            Create.Table(nameof(TableName.RequestLevel))
-                .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Request").AsInt64()
+        private void CreateRequestState() 
+        { 
+            var table = TableName.RequestState;
+            Create.Table(nameof(TableName.RequestState))
+                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn("TrackNumber").AsInt32()
+                .WithColumn("RequestId").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.Request, table), nameof(TableName.Request), Id)
-                .WithColumn("Level").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.Level, table), nameof(TableName.Level), Id)
-                .WithColumn("DateTime").AsDateTime().NotNullable();
-        }
-        private void CreateRequestBodyPart()
-        {
-            var table = TableName.RequestBodyPart;
-            Create.Table(nameof(TableName.RequestBodyPart))
-                .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(table)).Identity()
-                .WithColumn("Request").AsInt64()
-                    .ForeignKey(NamingHelper.Fk(TableName.Request, table), nameof(TableName.Request), Id)
-                .WithColumn("BodyPart").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.BodyPart, table), nameof(TableName.BodyPart), Id);
+                .WithColumn("StateId").AsInt16()
+                    .ForeignKey(NamingHelper.Fk(TableName.State, table), nameof(TableName.State), Id)
+                .WithColumn("InsertDateTime").AsDateTime().NotNullable()
+                .WithColumn("Seen").AsBoolean().NotNullable();
         }
     }
 }

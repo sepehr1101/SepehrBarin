@@ -3,7 +3,6 @@ using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Media.Dtos;
 using Hiwapardaz.SepehrBarin.Domain.Features.Media.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Features.Media.Contracts;
-using Microsoft.AspNetCore.Http;
 
 namespace Hiwapardaz.SepehrBarin.Application.Features.Media.Implementations
 {
@@ -25,7 +24,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Media.Implementations
                 Summary = newsAddDto.Summary,
                 Text = newsAddDto.Text,
                 Title = newsAddDto.Title,
-                ImageBase64 = GetBase64(newsAddDto.HeaderImage)
+                ImageBase64 = newsAddDto.HeaderImage.ToBase64()
             };
             await _newsService.Add(news);
         }
@@ -66,21 +65,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Media.Implementations
             news.Summary = newsUpdateDto.Summary;
             news.Text = newsUpdateDto.Text;
             news.InsertDateTime = DateTime.Now;
-            news.ImageBase64 = GetBase64(newsUpdateDto.HeaderImage);
-        }
-        private string GetBase64(IFormFile file)
-        {
-            if (file.Length > 0)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    string s = Convert.ToBase64String(fileBytes);
-                    return s;
-                }
-            }
-            return string.Empty;
+            news.ImageBase64 = newsUpdateDto.HeaderImage.ToBase64();
         }
     }
 }

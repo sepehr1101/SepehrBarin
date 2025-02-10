@@ -7,5 +7,6 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts
         Task<ICollection<User>> Get();
         Task<User> Get(Guid id);
         Task<User?> Get(string mobile);
+        Task<ICollection<User>> GetAdmins();
     }
 }

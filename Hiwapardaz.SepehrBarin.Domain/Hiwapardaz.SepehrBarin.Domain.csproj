@@ -25,7 +25,6 @@
     <Folder Include="Features\UiElement\Dto\Commands\" />
     <Folder Include="Features\UiElement\Dto\Queries\" />
     <Folder Include="Features\UiElement\EfConfig\" />
-    <Folder Include="Features\Workflow\" />
   </ItemGroup>
 
 </Project>

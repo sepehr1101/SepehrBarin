@@ -16,17 +16,20 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         private readonly IRoleQueryService _roleQueryService;
         private readonly IUserUpdateRoleHandler _userUpdateRoleHandler;
         private readonly IUserAllReadHandler _userAllReadHandler;
+        private readonly IUserAdminQueryHandler _userAdminQueryHandler;
 
         public AccountController(
             IUnitOfWork uow,
             IRoleQueryService roleQueryService,
             IUserUpdateRoleHandler userUpdateRoleHandler,
-            IUserAllReadHandler userAllReadHandler)
+            IUserAllReadHandler userAllReadHandler,
+            IUserAdminQueryHandler userAdminQueryHandler)
         {
             _roleQueryService = roleQueryService;
             _uow = uow;
             _userUpdateRoleHandler = userUpdateRoleHandler;
             _userAllReadHandler = userAllReadHandler;
+            _userAdminQueryHandler = userAdminQueryHandler;
         }
 
         [HttpGet]
@@ -47,6 +50,15 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         public async Task<IActionResult> GetUsers(CancellationToken cancellationToken)
         {
             var userDtos= await _userAllReadHandler.Handle(cancellationToken);
+            return Ok(userDtos);
+        }
+
+        [HttpGet]
+        [Route("users-admins")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<UserReadDto>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAdminUsers(CancellationToken cancellationToken)
+        {
+            var userDtos = await _userAdminQueryHandler.Handle(cancellationToken);
             return Ok(userDtos);
         }
 

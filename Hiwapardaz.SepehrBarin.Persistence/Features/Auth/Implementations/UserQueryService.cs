@@ -38,5 +38,12 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
             return await _users
                 .SingleOrDefaultAsync(u => u.Mobile == mobile);
         }
+        public async Task<ICollection<User>> GetAdmins()
+        {
+            var users = await _users
+                .Where(user => user.UserRoles.Any(UserRole => UserRole.RoleId > 1))
+                .ToListAsync();
+            return users;
+        }
     }
 }
