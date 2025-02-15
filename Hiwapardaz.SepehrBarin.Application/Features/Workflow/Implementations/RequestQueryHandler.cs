@@ -22,6 +22,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             var requestQueryDto = _mapper.Map<RequestQueryDto>(request);
             requestQueryDto.Image = request.ImageBase64;
             requestQueryDto.BeforeSurgeryImage = request.BeforeSurgeryImageBase64;
+            requestQueryDto.ImagePaymentClaim = request.ImageClaimPaymentBase64;
             return requestQueryDto;
         }
     }

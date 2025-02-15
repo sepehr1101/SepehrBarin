@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto
+﻿namespace Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto
 {
     public record RequestQueryDto
     {
@@ -56,5 +54,7 @@ namespace Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto
         public string ServiceType { get; set; } = null!;
 
         public string? SubServiceType { get; set; }
+
+        public string? ImagePaymentClaim { get; set; }
     }
 }

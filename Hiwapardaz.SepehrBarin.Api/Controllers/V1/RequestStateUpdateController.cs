@@ -42,7 +42,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         [HttpPost]
         [Route("claim-payment")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<string>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> ClaimPayment([FromBody] ClaimPaymentDto claimPaymentDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> ClaimPayment([FromForm] ClaimPaymentDto claimPaymentDto, CancellationToken cancellationToken)
         {
             await _requestStateUpdateHandler.HandleClaimPayment(claimPaymentDto, cancellationToken).ConfigureAwait(false);
             await _uow.SaveChangesAsync(cancellationToken);
