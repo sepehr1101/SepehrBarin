@@ -22,7 +22,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             _requestService = requestService;
             _requestService.NotNull(nameof(requestService));
         }
-        public async Task Handle(RequestAddDto requestAddDto, Guid userId, CancellationToken cancellationToken)
+        public async Task<string> Handle(RequestAddDto requestAddDto, Guid userId, CancellationToken cancellationToken)
         {
             var request = _mapper.Map<Request>(requestAddDto);
             if (requestAddDto.Image != null)
@@ -37,6 +37,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             var requestState = CreateRequestState(request);
             request.RequestStates.Add(requestState);
             await _requestService.Add(request);
+            return request.ImageBase64;
         }
         private RequestState CreateRequestState(Request request)
         {            

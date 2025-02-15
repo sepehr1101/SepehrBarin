@@ -6,5 +6,6 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Contracts
     {
         Task<ICollection<RequestBrief>> Handle(CancellationToken cancellationToken);
         Task<ICollection<RequestBrief>> HandleChat(CancellationToken cancellationToken);
+        Task<ICollection<RequestBrief>> HandleUserRequests(Guid userId, CancellationToken cancellationToken);
     }
 }

@@ -37,5 +37,14 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             var requestsBrief = await _requstService.GetInStates(stateIds);
             return requestsBrief;
         }
+        public async Task<ICollection<RequestBrief>> HandleUserRequests( Guid userId, CancellationToken cancellationToken)
+        {
+            StateIdEnum[] stateIds =
+               [ StateIdEnum.Registered, StateIdEnum.Confirmed, StateIdEnum.NeedModification,
+                  StateIdEnum.Rejected, StateIdEnum.PaymentNotified, StateIdEnum.PaymentClaimed,
+                  StateIdEnum.PaymentConfirmed , StateIdEnum.Refered , StateIdEnum.Finished, StateIdEnum.ChatStarted];
+            var requestsBrief = await _requstService.GetInStates(userId, stateIds);
+            return requestsBrief;
+        }
     }
 }

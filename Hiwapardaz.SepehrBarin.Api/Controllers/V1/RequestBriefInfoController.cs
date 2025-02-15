@@ -37,5 +37,15 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
             var info = await _requestHandler.HandleChat(cancellationToken);
             return Ok(info);
         }
+
+        [HttpGet]
+        [Route("my-list")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<RequestBrief>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetMyList(CancellationToken cancellationToken)
+        {
+            var userId = GetUserId();
+            var info = await _requestHandler.HandleUserRequests(userId, cancellationToken);
+            return Ok(info);
+        }
     }
 }

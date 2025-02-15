@@ -4,6 +4,6 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Contracts
 {
     public interface IRequestAddHandler
     {
-        Task Handle(RequestAddDto requestAddDto, Guid userId,  CancellationToken cancellationToken);
+        Task<string> Handle(RequestAddDto requestAddDto, Guid userId,  CancellationToken cancellationToken);
     }
 }

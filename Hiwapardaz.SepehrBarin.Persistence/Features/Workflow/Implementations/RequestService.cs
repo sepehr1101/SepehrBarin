@@ -59,8 +59,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
         {
             var requestsBriefQuery =
                 from request in _requests.AsNoTracking()
-                join requestState in _requestsState.AsNoTracking()
-                on request.Id equals requestState.Id
+                join requestState in _requestsState.AsNoTracking().Include(requestState=> requestState.State)
+                on request.Id equals requestState.RequestId
                 where stateIds.Contains(requestState.StateId) && !requestState.Seen
                 select new RequestBrief()
                 {
@@ -70,7 +70,36 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                     RequestService = request.ServiceType,
                     RequestStateId = requestState.Id,
                     RequestSubService=request.SubServiceType,
-                    TrackNumber=requestState.TrackNumber                    
+                    TrackNumber=requestState.TrackNumber,
+                    StateId = (int)requestState.State.Id,
+                    StateTitle=requestState.State.Title,
+                    Amount = request.Amount
+                };
+            var requests = await requestsBriefQuery.ToListAsync();
+            return requests;
+        }
+        public async Task<ICollection<RequestBrief>> GetInStates(Guid userId, StateIdEnum[] stateIds)
+        {
+            var requestsBriefQuery =
+                from request in _requests.AsNoTracking()
+                join requestState in _requestsState.AsNoTracking().Include(requestState => requestState.State)
+                on request.Id equals requestState.RequestId
+                where 
+                    stateIds.Contains(requestState.StateId) &&
+                    !requestState.Seen &&
+                    request.UserId==userId
+                select new RequestBrief()
+                {
+                    FullName = request.Firstname + " " + request.Surname,
+                    Mobile = request.Mobile,
+                    RequestId = request.Id,
+                    RequestService = request.ServiceType,
+                    RequestStateId = requestState.Id,
+                    RequestSubService = request.SubServiceType,
+                    TrackNumber = requestState.TrackNumber,
+                    StateId = (int)requestState.State.Id,
+                    StateTitle = requestState.State.Title,
+                    Amount=request.Amount
                 };
             var requests = await requestsBriefQuery.ToListAsync();
             return requests;

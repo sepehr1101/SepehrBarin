@@ -36,6 +36,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
                 new State() { Id=StateIdEnum.PaymentNotified , Title="اعلام هزینه شد"},
                 new State() { Id=StateIdEnum.PaymentClaimed , Title="ادعای درخواست توسط درمانجو"},
                 new State() { Id=StateIdEnum.PaymentConfirmed , Title="تایید پرداخت"},
+                new State() { Id=StateIdEnum.Refered , Title="ارجاع شده"},
                 new State() { Id=StateIdEnum.ChatStarted , Title="شروع گفتگو"},
                 new State() { Id=StateIdEnum.Finished , Title="پایان درخواست"}
             };

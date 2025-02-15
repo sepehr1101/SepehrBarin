@@ -28,7 +28,7 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         [ProducesResponseType(typeof(ApiResponseEnvelope<string>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Add([FromForm]RequestAddDto requestAddDto, CancellationToken cancellationToken)
         {
-            await _requestAddHandler.Handle(requestAddDto, GetUserId(), cancellationToken);
+            var imageBase64= await _requestAddHandler.Handle(requestAddDto, GetUserId(), cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok("افزودن با موفقیت انجام شد");
         }
