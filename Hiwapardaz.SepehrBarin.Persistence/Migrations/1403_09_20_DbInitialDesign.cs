@@ -185,7 +185,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("ServiceType").AsString(_255).NotNullable()
                 .WithColumn("SubServiceType").AsString(_255).Nullable()
                 .WithColumn("Amount").AsInt32().Nullable()
-                .WithColumn("ImageClaimPaymentBase64").AsString(int.MaxValue).Nullable();
+                .WithColumn("ImageClaimPaymentBase64").AsString(int.MaxValue).Nullable()
+                .WithColumn("ReferedToId").AsGuid().Nullable();
         }
 
         private void CreateRequestState() 

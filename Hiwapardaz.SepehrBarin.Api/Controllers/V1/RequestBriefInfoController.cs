@@ -47,5 +47,15 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
             var info = await _requestHandler.HandleUserRequests(userId, cancellationToken);
             return Ok(info);
         }
+
+        [HttpGet]
+        [Route("my-refered")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<RequestBrief>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetReferdTo(CancellationToken cancellationToken)
+        {
+            var userId = GetUserId();
+            var info = await _requestHandler.HandleUserRefered(userId, cancellationToken);
+            return Ok(info);
+        }
     }
 }

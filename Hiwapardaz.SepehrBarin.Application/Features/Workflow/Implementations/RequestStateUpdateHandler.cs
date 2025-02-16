@@ -32,6 +32,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
         public async Task HandleReferToAnotherAdmin(ReferToAnotherAdminDto updateDto, CancellationToken cancellationToken)
         {
             var requestState = await _requestService.GetRequestState(updateDto.RequestStateId);
+            var request= await _requestService.Get(requestState.RequestId);
             var newRequestState = new RequestState()
             {
                 InsertDateTime = DateTime.Now,
@@ -40,6 +41,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
                 TrackNumber = requestState.TrackNumber,
                 Seen = false
             };
+            request.ReferedToId = updateDto.UserId;
             requestState.Seen = true;
             await _requestService.AddRequestState(newRequestState);
         }
