@@ -21,6 +21,7 @@ namespace Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto
     public record ClaimPaymentDto
     {
         public int RequestStateId { get; set;}
+        public string? Description { get; set; }
         public IFormFile PaymentImage { get; set; } = default!;
     }
         

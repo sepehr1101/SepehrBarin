@@ -74,6 +74,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             requestState.Seen = true;
             await _requestService.AddRequestState(newRequestState);
             requestState.Request.ImageClaimPaymentBase64 = updateDto.PaymentImage.ToBase64();
+            requestState.Request.PaymentDescription = updateDto.Description;
         }
     }
 }

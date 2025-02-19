@@ -66,6 +66,8 @@ public class Request
 
     public Guid? ReferedToId { get; set; }
 
+    public string? PaymentDescription { get; set; }
+
     public virtual ICollection<RequestState> RequestStates { get; set; } = new List<RequestState>();
     public virtual User User { get; set; }
 }

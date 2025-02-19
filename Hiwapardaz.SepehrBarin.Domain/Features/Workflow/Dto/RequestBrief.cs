@@ -12,5 +12,6 @@
         public string? RequestSubService { get; set; }
         public int TrackNumber { get; set; }
         public int? Amount { get; set; }
+        public string? PaymentDescription { get; set; }
     }
 }

@@ -73,7 +73,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                     TrackNumber=requestState.TrackNumber,
                     StateId = (int)requestState.State.Id,
                     StateTitle=requestState.State.Title,
-                    Amount = request.Amount
+                    Amount = request.Amount,
+                    PaymentDescription = request.PaymentDescription
                 };
             var requests = await requestsBriefQuery.ToListAsync();
             return requests;
@@ -99,7 +100,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                     TrackNumber = requestState.TrackNumber,
                     StateId = (int)requestState.State.Id,
                     StateTitle = requestState.State.Title,
-                    Amount=request.Amount
+                    Amount=request.Amount,
+                    PaymentDescription=request.PaymentDescription,
                 };
             var requests = await requestsBriefQuery.ToListAsync();
             return requests;
