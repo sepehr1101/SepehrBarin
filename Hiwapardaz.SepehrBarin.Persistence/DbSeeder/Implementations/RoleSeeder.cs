@@ -32,18 +32,38 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
                 };
                 var adminLevel1 = new Role()
                 {                    
-                    Title = "راهبر سطح 1",
+                    Title = "استعدادیابی",
                     Name = BaseRoles.AdminLevel1                    
                 };
                 var adminLevel2 = new Role()
                 {
-                    Title = "راهبر سطح 2",
-                    Name = BaseRoles.AdminLevel1
+                    Title = "آسیب‌ها و قوت‌های طالع",
+                    Name = BaseRoles.AdminLevel2
                 };
                 var adminLevel3 = new Role()
                 {
-                    Title = "راهبر سطح 3",
-                    Name = BaseRoles.AdminLevel1
+                    Title = "دوره‌های مرتبط با بیماری",
+                    Name = BaseRoles.AdminLevel3
+                };
+                var adminLevel4 = new Role()
+                {
+                    Title = "بررسی با علم رمل",
+                    Name = BaseRoles.AdminLevel4
+                };
+                var adminLevel5 = new Role()
+                {
+                    Title = "بررسی با علم ماورایی",
+                    Name = BaseRoles.AdminLevel5
+                };
+                var adminLevel6 = new Role()
+                {
+                    Title = "محصولات",
+                    Name = BaseRoles.AdminLevel6
+                };
+                var adminLevel7 = new Role()
+                {
+                    Title = "راهبر",
+                    Name = BaseRoles.AdminLevel7
                 };
                 var ai = new Role()
                 {                   
@@ -51,7 +71,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
                     Name = BaseRoles.Ai,
 
                 };
-                var roles = new Role[] { publicUser,adminLevel1,adminLevel2,adminLevel3, ai };
+                var roles = new Role[] { publicUser,adminLevel1,adminLevel2,adminLevel3, adminLevel4, adminLevel5, adminLevel6, adminLevel6, ai };
                 _roles.AddRange(roles);
                 _uow.SaveChanges();
             }

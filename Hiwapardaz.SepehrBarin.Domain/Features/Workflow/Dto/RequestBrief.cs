@@ -13,5 +13,7 @@
         public int TrackNumber { get; set; }
         public int? Amount { get; set; }
         public string? PaymentDescription { get; set; }
+        public string? Recipient { get; set; }
+        public string? BodyParts { get; set; }
     }
 }

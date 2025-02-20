@@ -6,7 +6,7 @@ namespace Hiwapardaz.SepehrBarin.Domain.Features.Auth.Entities;
 public  class User
 {
     public Guid Id { get; set; }
-
+    public string? Nickname { get; set; }
     public string Mobile { get; set; } = null!;
 
     public int InvalidLoginAttemptCount { get; set; }

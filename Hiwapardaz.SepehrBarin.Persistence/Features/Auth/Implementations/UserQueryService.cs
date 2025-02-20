@@ -45,5 +45,13 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
                 .ToListAsync();
             return users;
         }
+
+        //public async Task<ICollection<User>> GetUserInRole(string roleName)
+        //{
+        //    var users= await _users
+        //        .Include(user=> user.UserRoles)
+        //        .ThenInclude(userRole=>userRole.Role)
+        //        .Where(user=> user.UserRoles.whe)
+        //}
     }
 }

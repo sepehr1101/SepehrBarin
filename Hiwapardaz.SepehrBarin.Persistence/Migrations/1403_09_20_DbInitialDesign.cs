@@ -35,6 +35,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
             var table = TableName.User;
             Create.Table(nameof(TableName.User))
                 .WithColumn(Id).AsGuid().PrimaryKey(NamingHelper.Pk(table))
+                .WithColumn("Nickname").AsString(_255).Nullable()
                 .WithColumn("Mobile").AsAnsiString(11).NotNullable()
                 .WithColumn("InvalidLoginAttemptCount").AsInt32().NotNullable().WithDefaultValue(0)
                 .WithColumn("SerialNumber").AsAnsiString(36).Nullable()
@@ -187,7 +188,9 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Migrations
                 .WithColumn("Amount").AsInt32().Nullable()
                 .WithColumn("ImageClaimPaymentBase64").AsString(int.MaxValue).Nullable()
                 .WithColumn("ReferedToId").AsGuid().Nullable()
-                .WithColumn("PaymentDescription").AsString(_1023).Nullable();
+                .WithColumn("PaymentDescription").AsString(_1023).Nullable()
+                .WithColumn("Recipient").AsString(_255).Nullable()
+                .WithColumn("BodyParts").AsString(_255).Nullable();
         }
 
         private void CreateRequestState() 

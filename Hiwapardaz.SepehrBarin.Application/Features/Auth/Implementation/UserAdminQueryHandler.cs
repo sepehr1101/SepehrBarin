@@ -19,7 +19,8 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
             var userDtos = users.Select(u => new UserAdminQuery
             {
                 Id = u.Id,
-                Title=u.Mobile
+                Title=u.Mobile,
+                 Nickname=u.Nickname,
             }).ToList();
             return userDtos;
         }

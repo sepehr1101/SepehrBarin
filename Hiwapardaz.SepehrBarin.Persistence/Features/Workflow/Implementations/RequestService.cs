@@ -74,7 +74,9 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                     StateId = (int)requestState.State.Id,
                     StateTitle=requestState.State.Title,
                     Amount = request.Amount,
-                    PaymentDescription = request.PaymentDescription
+                    PaymentDescription = request.PaymentDescription,
+                    Recipient=request.Recipient,
+                    BodyParts=request.BodyParts,
                 };
             var requests = await requestsBriefQuery.ToListAsync();
             return requests;
@@ -88,7 +90,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                 where 
                     stateIds.Contains(requestState.StateId) &&
                     !requestState.Seen &&
-                    request.UserId==userId
+                    request.ReferedToId==userId
                 select new RequestBrief()
                 {
                     FullName = request.Firstname + " " + request.Surname,
@@ -102,6 +104,8 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Implementations
                     StateTitle = requestState.State.Title,
                     Amount=request.Amount,
                     PaymentDescription=request.PaymentDescription,
+                    Recipient = request.Recipient,
+                    BodyParts = request.BodyParts,
                 };
             var requests = await requestsBriefQuery.ToListAsync();
             return requests;

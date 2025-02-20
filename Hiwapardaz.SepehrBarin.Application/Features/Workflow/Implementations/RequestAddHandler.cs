@@ -5,6 +5,7 @@ using Hiwapardaz.SepehrBarin.Domain.Constants;
 using Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto;
 using Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Entities;
 using Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Contracts;
+using Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts;
 
 namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
 {
@@ -12,15 +13,21 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IRequestService _requestService;
+        private readonly IUserQueryService _userQueryService;
+
         public RequestAddHandler(
             IMapper mapper,
-            IRequestService requestService)
+            IRequestService requestService,
+            IUserQueryService userQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
 
             _requestService = requestService;
             _requestService.NotNull(nameof(requestService));
+
+            _userQueryService = userQueryService;
+            _userQueryService.NotNull(nameof(_userQueryService));
         }
         public async Task<string> Handle(RequestAddDto requestAddDto, Guid userId, CancellationToken cancellationToken)
         {
@@ -33,6 +40,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             {
                 request.BeforeSurgeryImageBase64 = requestAddDto.BeforeSurgeryImage.ToBase64();
             }
+            var user = await _userQueryService.Get(userId);
             request.UserId = userId;
             var requestState = CreateRequestState(request);
             request.RequestStates.Add(requestState);

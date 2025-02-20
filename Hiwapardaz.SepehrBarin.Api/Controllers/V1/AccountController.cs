@@ -17,19 +17,22 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         private readonly IUserUpdateRoleHandler _userUpdateRoleHandler;
         private readonly IUserAllReadHandler _userAllReadHandler;
         private readonly IUserAdminQueryHandler _userAdminQueryHandler;
+        private readonly IUserUpdateHandler _userUpdateHandler;
 
         public AccountController(
             IUnitOfWork uow,
             IRoleQueryService roleQueryService,
             IUserUpdateRoleHandler userUpdateRoleHandler,
             IUserAllReadHandler userAllReadHandler,
-            IUserAdminQueryHandler userAdminQueryHandler)
+            IUserAdminQueryHandler userAdminQueryHandler,
+            IUserUpdateHandler userUpdateHandler)
         {
             _roleQueryService = roleQueryService;
             _uow = uow;
             _userUpdateRoleHandler = userUpdateRoleHandler;
             _userAllReadHandler = userAllReadHandler;
             _userAdminQueryHandler = userAdminQueryHandler;
+            _userUpdateHandler = userUpdateHandler;
         }
 
         [HttpGet]
@@ -70,6 +73,17 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
             await _userUpdateRoleHandler.Handle(userUpdateDto, cancellationToken);
             await _uow.SaveChangesAsync();
             return Ok(userUpdateDto, MessageResources.UserUpdateSuccess);
+        }
+
+        [HttpPost]
+        [Route("my-nickname")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<SetNicknameDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> SetMyNickname([FromBody] SetNicknameDto setNicknameDto, CancellationToken cancellationToken)
+        {
+            var userId = GetUserId();
+            await _userUpdateHandler.Handle(setNicknameDto, userId, cancellationToken);
+            await _uow.SaveChangesAsync();
+            return Ok(setNicknameDto, MessageResources.UserUpdateSuccess);
         }
     }
 }

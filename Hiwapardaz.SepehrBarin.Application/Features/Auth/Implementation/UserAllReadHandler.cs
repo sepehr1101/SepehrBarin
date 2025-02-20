@@ -19,6 +19,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Auth.Implementation
             var userDtos = users.Select(u => new UserReadDto
             {
                 Id = u.Id,
+                Nickname = u.Nickname,
                 InsertLogInfo = u.InsertLogInfo,
                 LockTimespan = u.LockTimespan,
                 Mobile = u.Mobile,
