@@ -1,9 +1,7 @@
 ﻿using Hiwapardaz.SepehrBarin.Application.Features.Workflow.Contracts;
 using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
-using Hiwapardaz.SepehrBarin.Domain.Features.Auth.Dto.Commands;
 using Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
@@ -21,7 +19,6 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
 
         [HttpGet]
         [Route("query/{requestId}")]
-        [AllowAnonymous]
         [ProducesResponseType(typeof(ApiResponseEnvelope<RequestQueryDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(int requestId, CancellationToken cancellationToken)
         {

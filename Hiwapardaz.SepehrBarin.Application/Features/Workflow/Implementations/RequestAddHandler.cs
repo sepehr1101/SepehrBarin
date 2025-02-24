@@ -14,11 +14,13 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
         private readonly IMapper _mapper;
         private readonly IRequestService _requestService;
         private readonly IUserQueryService _userQueryService;
+        private readonly IRoleQueryService _roleQueryService;
 
         public RequestAddHandler(
             IMapper mapper,
             IRequestService requestService,
-            IUserQueryService userQueryService)
+            IUserQueryService userQueryService,
+            IRoleQueryService roleQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,6 +30,9 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
 
             _userQueryService = userQueryService;
             _userQueryService.NotNull(nameof(_userQueryService));
+
+            _roleQueryService = roleQueryService;
+            _roleQueryService.NotNull(nameof(_roleQueryService));   
         }
         public async Task<string> Handle(RequestAddDto requestAddDto, Guid userId, CancellationToken cancellationToken)
         {
@@ -43,8 +48,18 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
             var user = await _userQueryService.Get(userId);
             request.UserId = userId;
             var requestState = CreateRequestState(request);
+
+            var users = await _roleQueryService.GetUsersInRole(requestAddDto.ServiceType);
+            if (users is not null && users.Any())
+            {
+                var firstUser = users.First();
+                request.ReferedToId = firstUser.Id;
+                requestState.StateId = StateIdEnum.Refered;
+            }
+
             request.RequestStates.Add(requestState);
             await _requestService.Add(request);
+
             return request.ImageBase64;
         }
         private RequestState CreateRequestState(Request request)

@@ -28,5 +28,23 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Implementations
         {
             return await _uow.FindOrThrowAsync<Role>(id);
         }
+
+        public async Task<ICollection<User>> GetUsersInRole(string roleName)
+        {
+            var roles = await _roles
+                .AsNoTracking()
+                .Include(role => role.UserRoles)
+                .ThenInclude(userRole => userRole.User)
+                .Where(role => role.Title == roleName)
+                .ToListAsync();
+            if(roles is null || !roles.Any())
+            {
+                return new List<User>();
+            }
+            var users = roles
+                .SelectMany(r => r.UserRoles.Select(ur => ur.User))
+                .ToList();
+            return users;
+        }
     }
 }

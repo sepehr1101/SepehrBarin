@@ -13,5 +13,6 @@ namespace Hiwapardaz.SepehrBarin.Persistence.Features.Workflow.Contracts
         Task<ICollection<Request>> GetInState(StateIdEnum stateId);
         Task<ICollection<RequestBrief>> GetInStates(StateIdEnum[] stateIds);
         Task<ICollection<RequestBrief>> GetInStates(Guid id, StateIdEnum[] stateIds);
+        Task<ICollection<RequestBrief>> GetInStatesRefered(Guid userId, StateIdEnum[] stateIds);
     }
 }

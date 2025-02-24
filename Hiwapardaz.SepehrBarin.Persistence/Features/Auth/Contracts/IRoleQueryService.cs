@@ -6,5 +6,6 @@ namespace Hiwapardaz.SeprhrBarin.Persistence.Features.Auth.Contracts
     {
         Task<ICollection<Role>> Get();
         Task<Role> Get(int id);
+        Task<ICollection<User>> GetUsersInRole(string roleName);
     }
 }

@@ -52,7 +52,7 @@ namespace Hiwapardaz.SepehrBarin.Application.Features.Workflow.Implementations
                [ StateIdEnum.Registered, StateIdEnum.Confirmed, StateIdEnum.NeedModification,
                   StateIdEnum.Rejected, StateIdEnum.PaymentNotified, StateIdEnum.PaymentClaimed,
                   StateIdEnum.PaymentConfirmed , StateIdEnum.Refered , StateIdEnum.Finished, StateIdEnum.ChatStarted];
-            var requestsBrief = await _requstService.GetInStates(userId, stateIds);
+            var requestsBrief = await _requstService.GetInStatesRefered(userId, stateIds);
             return requestsBrief;
         }
     }

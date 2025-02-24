@@ -2,7 +2,6 @@
 using Hiwapardaz.SepehrBarin.Common.Categories.ApiResponse;
 using Hiwapardaz.SepehrBarin.Common.Extensions;
 using Hiwapardaz.SepehrBarin.Domain.Features.Workflow.Dto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
@@ -21,7 +20,6 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         [HttpGet]
         [Route("brief-nonchat")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<RequestBrief>>), StatusCodes.Status200OK)]
-        [AllowAnonymous]
         public async Task<IActionResult> GetNotChat(CancellationToken cancellationToken)
         {
             var info= await _requestHandler.Handle(cancellationToken);
@@ -31,7 +29,6 @@ namespace Hiwapardaz.SepehrBarin.Api.Controllers.V1
         [HttpGet]
         [Route("brief-chat")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<RequestBrief>>), StatusCodes.Status200OK)]
-        [AllowAnonymous]
         public async Task<IActionResult> GetChat(CancellationToken cancellationToken)
         {
             var info = await _requestHandler.HandleChat(cancellationToken);
