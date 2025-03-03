@@ -71,7 +71,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
                     Name = BaseRoles.Ai,
 
                 };
-                var roles = new Role[] { publicUser,adminLevel1,adminLevel2,adminLevel3, adminLevel4, adminLevel5, adminLevel6, adminLevel6, ai };
+                var roles = new Role[] { publicUser,adminLevel1,adminLevel2,adminLevel3, adminLevel4, adminLevel5, adminLevel6, adminLevel6, adminLevel7, ai };
                 _roles.AddRange(roles);
                 _uow.SaveChanges();
             }
